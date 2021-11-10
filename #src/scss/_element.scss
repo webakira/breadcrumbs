@@ -1,0 +1,49 @@
+$breadcrumb_delimiter: "/";
+@mixin breadcrumb_font {
+	font: 16px/20px $fontfamily;
+}
+
+.breadcrumb {
+	&__list {
+		list-style: none;
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	&__item {
+		color: $mainColor;
+		padding-right: 30px;
+		position: relative;
+		@include breadcrumb_font();
+		&:after {
+			content: $breadcrumb_delimiter;
+			position: absolute;
+			right: 0;
+			top: 0;
+			height: 100%;
+			width: 17px;
+			display: flex;
+			padding-top: 3px;
+			@include breadcrumb_font();
+			align-items: center;
+		}
+		&:last-child {
+			padding-right: 0;
+			&:after {
+				display: none;
+			}
+		}
+		&._active {
+			opacity: 0.7;
+		}
+		a {
+			color: $mainColor;
+			@include breadcrumb_font();
+			transition: all 0.5s ease 0s;
+			&:hover {
+				color: $secondColor;
+				opacity: 0.7;
+			}
+		}
+	}
+}
